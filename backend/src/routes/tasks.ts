@@ -111,7 +111,7 @@ router.post('/', validate(createTaskSchema), async (req: Request, res: Response)
 // GET /tasks/:id — get a single task
 router.get('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
-    const taskId = parseInt(req.params.id);
+    const taskId = parseInt(req.params.id as string);
     if (isNaN(taskId)) {
       res.status(400).json({ error: 'Invalid task ID' });
       return;
@@ -136,7 +136,7 @@ router.get('/:id', async (req: Request, res: Response): Promise<void> => {
 // PATCH /tasks/:id — update a task
 router.patch('/:id', validate(updateTaskSchema), async (req: Request, res: Response): Promise<void> => {
   try {
-    const taskId = parseInt(req.params.id);
+    const taskId = parseInt(req.params.id as string);
     if (isNaN(taskId)) {
       res.status(400).json({ error: 'Invalid task ID' });
       return;
@@ -176,7 +176,7 @@ router.patch('/:id', validate(updateTaskSchema), async (req: Request, res: Respo
 // DELETE /tasks/:id — delete a task
 router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
-    const taskId = parseInt(req.params.id);
+    const taskId = parseInt(req.params.id as string);
     if (isNaN(taskId)) {
       res.status(400).json({ error: 'Invalid task ID' });
       return;
@@ -204,7 +204,7 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
 // PATCH /tasks/:id/toggle — toggle task status
 router.patch('/:id/toggle', async (req: Request, res: Response): Promise<void> => {
   try {
-    const taskId = parseInt(req.params.id);
+    const taskId = parseInt(req.params.id as string);
     if (isNaN(taskId)) {
       res.status(400).json({ error: 'Invalid task ID' });
       return;
